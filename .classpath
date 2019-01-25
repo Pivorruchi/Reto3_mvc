@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Reto3_mvc/src/main/java"/>
+	<classpathentry kind="src" path="Reto3_mvc/src/test/java"/>
+	<classpathentry kind="lib" path="Reto3_mvc/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="C:/Users/julen/Downloads/mysql-connector-java-8.0.13-20190107T200213Z-001/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
+	<classpathentry kind="output" path="Reto3_mvc/bin"/>
+</classpath>
