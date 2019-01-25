@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
-import metodos.Linea;
+//import metodos.Linea;
 
 public class DBConnect {
 	
-	private Connection connect;
-	private Statement statement;
-	private static ResultSet resultSet = null;
-	static DefaultListModel<String> listModel = new DefaultListModel<>();
+	static Connection connect;
+	static Statement statement;
+	static ResultSet resultSet = null;
+	//static DefaultListModel<String> listModel = new DefaultListModel<>();
 	
 	
 	public DBConnect() {
 		connect=null;
 	}
-	public void conectar() throws Exception {
+	public static void conectar() throws Exception {
 	    try {
 	        // This will load the MySQL driver, each DB has its own driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,7 +40,7 @@ public class DBConnect {
 	
 	}
 	
-	public void seleccionar(String sentencia) throws Exception {
+	public static void seleccionar(String sentencia) throws Exception {
 	    try {
 	        // Statements allow to issue SQL queries to the database
 	        statement = connect.createStatement();
@@ -59,7 +59,7 @@ public class DBConnect {
 
 	
 	
-	private void writeResultSet(ResultSet resultSet) throws SQLException {
+	private static void writeResultSet(ResultSet resultSet) throws SQLException {
 	    // ResultSet is initially before the first data set
 	    while (resultSet.next()) {
 	        // It is possible to get the columns via name
@@ -75,7 +75,7 @@ public class DBConnect {
 	    }
 	}
 	
-	public void close() {
+	public static void close() {
 	    try {
 	        if (resultSet != null) {
 	            resultSet.close();
@@ -92,6 +92,7 @@ public class DBConnect {
 	
 	    }
 }
+	/*
 	public ArrayList<Linea> seleccionar() throws Exception {
         ArrayList<Linea> misLineas=new ArrayList<Linea>();
 
@@ -114,5 +115,6 @@ public class DBConnect {
 	    return misLineas;
 
 	}
+	*/
 
 }
