@@ -4,6 +4,9 @@
 	<classpathentry kind="src" path="Reto3_mvc/src/main/java"/>
 	<classpathentry kind="src" path="Reto3_mvc/src/test/java"/>
 	<classpathentry kind="lib" path="Reto3_mvc/gradle/wrapper/gradle-wrapper.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/julen/Downloads/mysql-connector-java-8.0.13-20190107T200213Z-001/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
+=======
+>>>>>>> 9812fca1a98dde8e9de89f2e38b2268faa410598
 	<classpathentry kind="output" path="Reto3_mvc/bin"/>
 </classpath>
