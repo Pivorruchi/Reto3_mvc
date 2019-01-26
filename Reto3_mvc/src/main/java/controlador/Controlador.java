@@ -21,7 +21,6 @@ public class Controlador {
 		this.vista.panelLinea.btnMostrarLineas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String lineas = modelo.linea.getNombre();
-				
 				vista.panelLinea.MostrarLineas(lineas);
 			}
 		});
