@@ -1,8 +1,14 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+
 public class Linea {
 	private String cod_linea;
 	private String nombre;
+	static DefaultListModel<String> listModel = new DefaultListModel<>();
+	//private ArrayList<String> al= new ArrayList<String>();
 	
 	
 	public Linea() {
@@ -14,6 +20,8 @@ public class Linea {
 	}
 	public String getNombre() {
 		return nombre;
+	
+	
 	}
 
 }

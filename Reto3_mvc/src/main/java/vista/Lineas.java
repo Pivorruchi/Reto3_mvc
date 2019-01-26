@@ -2,11 +2,16 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListDataListener;
 
-//import paneles.panelJlist.MyListModel;
+import modelo.DBConnect;
+import modelo.Linea;
+import modelo.MyListModel;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 
 import java.awt.event.ActionListener;
@@ -18,27 +23,27 @@ public class Lineas extends JPanel {
 	private JTextArea textAreaLineas;
 	private ArrayList<String> al= new ArrayList<String>();
 	
-	public Lineas() {
+	public Lineas() throws Exception{
 		setLayout(null);
 		
-		/*
-		textAreaLineas = new JTextArea();
-		textAreaLineas.setBounds(66, 54, 201, 153);
-		add(textAreaLineas);
-		*/
 		
 		btnMostrarLineas.setBounds(66, 238, 201, 23);
 		add(btnMostrarLineas);
 		
-		modelo.MyListModel lm = new modelo.MyListModel();		 
+		
+		MyListModel lm = new MyListModel();		 
 		JList listaLineas = new JList(lm);
+		lm.llenarLinea();
 		listaLineas.setBounds(41, 42, 151, 155);   
 		listaLineas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		add(listaLineas);
-
-
-	}
+		
+		
 	
+			
+		}
+		
+		
 	public void MostrarLineas(String lineas) {
 		textAreaLineas.append(lineas);
 	}

@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
-//import metodos.Linea;
+//import modelo.Linea;
 
 public class DBConnect {
 	
-	static Connection connect;
-	static Statement statement;
-	static ResultSet resultSet = null;
-	//static DefaultListModel<String> listModel = new DefaultListModel<>();
+	public Connection connect;
+	public Statement statement;
+	public static ResultSet resultSet = null;
+	static DefaultListModel<String> listModel = new DefaultListModel<>();
 	
 	
 	public DBConnect() {
 		connect=null;
 	}
-	public static void conectar() throws Exception {
+	public void conectar() throws Exception {
 	    try {
 	        // This will load the MySQL driver, each DB has its own driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,7 +40,7 @@ public class DBConnect {
 	
 	}
 	
-	public static void seleccionar(String sentencia) throws Exception {
+	public void seleccionar(String sentencia) throws Exception {
 	    try {
 	        // Statements allow to issue SQL queries to the database
 	        statement = connect.createStatement();
@@ -59,7 +59,7 @@ public class DBConnect {
 
 	
 	
-	private static void writeResultSet(ResultSet resultSet) throws SQLException {
+	private void writeResultSet(ResultSet resultSet) throws SQLException {
 	    // ResultSet is initially before the first data set
 	    while (resultSet.next()) {
 	        // It is possible to get the columns via name
@@ -75,7 +75,7 @@ public class DBConnect {
 	    }
 	}
 	
-	public static void close() {
+	public void close() {
 	    try {
 	        if (resultSet != null) {
 	            resultSet.close();
@@ -92,29 +92,6 @@ public class DBConnect {
 	
 	    }
 }
-	/*
-	public ArrayList<Linea> seleccionar() throws Exception {
-        ArrayList<Linea> misLineas=new ArrayList<Linea>();
-
-	    try {
-	    	conectar();
-	        // Statements allow to issue SQL queries to the database
-	        statement = connect.createStatement();
-	        // Result set get the result of the SQL query
-	        resultSet = statement
-	                .executeQuery("select * from linea");
-		    while (resultSet.next()) {
-		    	misLineas.add(new Linea(resultSet.getString("Cod_Linea"),resultSet.getString("Nombre")));
-		        
-		    }
 	
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	    }
-	    close();
-	    return misLineas;
-
-	}
-	*/
 
 }
