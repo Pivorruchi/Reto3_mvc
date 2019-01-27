@@ -11,7 +11,7 @@ import modelo.Linea;
 import modelo.MyListModel;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 import javax.swing.JList;
 
 import java.awt.event.ActionListener;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Lineas extends JPanel {
-	public JButton btnMostrarLineas = new JButton("Mostrar lineas");
+	public JButton btnSeleccionarParada = new JButton("Mostrar lineas");
 	private JTextArea textAreaLineas;
 	private ArrayList<String> al= new ArrayList<String>();
 	
@@ -27,8 +27,9 @@ public class Lineas extends JPanel {
 		setLayout(null);
 		
 		
-		btnMostrarLineas.setBounds(66, 238, 201, 23);
-		add(btnMostrarLineas);
+		btnSeleccionarParada.setBounds(66, 238, 201, 23);
+		add(btnSeleccionarParada);
+		
 		
 		
 		MyListModel lm = new MyListModel();		 

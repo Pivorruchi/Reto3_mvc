@@ -8,7 +8,7 @@ public class Linea {
 	private String cod_linea;
 	private String nombre;
 	static DefaultListModel<String> listModel = new DefaultListModel<>();
-	//private ArrayList<String> al= new ArrayList<String>();
+	
 	
 	
 	public Linea() {
