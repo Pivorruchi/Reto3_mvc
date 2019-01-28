@@ -18,11 +18,11 @@ public class Controlador {
 	}
 	
 	public void initializeEvents() {
-		this.vista.panelLinea.btnMostrarLineas.addActionListener(new ActionListener() {
+		this.vista.panelLinea.btnSeleccionarParada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String lineas = modelo.linea.ObtenerLineas();
-				
-				vista.panelLinea.MostrarLineas(lineas);
+				vista.mostrarPanel(vista.panelParada);
+				vista.ventana.setVisible(true);
+				hola
 			}
 		});
 	}

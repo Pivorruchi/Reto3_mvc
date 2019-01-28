@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
-import metodos.Linea;
+//import modelo.Linea;
 
 public class DBConnect {
 	
-	private Connection connect;
-	private Statement statement;
-	private static ResultSet resultSet = null;
+	public Connection connect;
+	public Statement statement;
+	public static ResultSet resultSet = null;
 	static DefaultListModel<String> listModel = new DefaultListModel<>();
 	
 	
@@ -92,27 +92,6 @@ public class DBConnect {
 	
 	    }
 }
-	public ArrayList<Linea> seleccionar() throws Exception {
-        ArrayList<Linea> misLineas=new ArrayList<Linea>();
-
-	    try {
-	    	conectar();
-	        // Statements allow to issue SQL queries to the database
-	        statement = connect.createStatement();
-	        // Result set get the result of the SQL query
-	        resultSet = statement
-	                .executeQuery("select * from linea");
-		    while (resultSet.next()) {
-		    	misLineas.add(new Linea(resultSet.getString("Cod_Linea"),resultSet.getString("Nombre")));
-		        
-		    }
 	
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	    }
-	    close();
-	    return misLineas;
-
-	}
 
 }
