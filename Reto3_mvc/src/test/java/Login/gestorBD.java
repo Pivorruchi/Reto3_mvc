@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.Set;
+
+import javax.print.attribute.standard.NumberOfDocuments;
+
 import Login.PrincipalVentana;
 
 public class gestorBD {
@@ -45,7 +48,7 @@ public class gestorBD {
 	        statement = connect.createStatement();
 	        // Result set get the result of the SQL query
 	        resultSet = statement
-	        		.executeQuery("select count(DNI) from " +cliente+"where DNI = \"16057217E");
+	        		.executeQuery("select * from " +cliente+"where DNI =" +PrincipalVentana.NumDNI);
 		    while (resultSet.next()) {
 		    	numeroFilas=resultSet.getString(1);
 		    	
