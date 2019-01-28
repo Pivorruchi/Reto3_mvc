@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="C:/Users/julen/Downloads/mysql-connector-java-8.0.13-20190107T200213Z-001/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
+	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+=======
+	<classpathentry kind="lib" path="/Users/ghealach/Documents/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
+>>>>>>> 287745bfa9c68b9c6aa58bd7fe7cad00fd07fd9d
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -5,7 +5,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -15,8 +19,8 @@ import java.awt.event.ActionEvent;
 public class PrincipalVentana extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField NumDNI;
-	private JTextField passwd;
+	public static JTextField NumDNI;
+	public JTextField passwd;
 	private JButton btnNewButton;
 
 	/**
@@ -63,7 +67,7 @@ public class PrincipalVentana extends JFrame {
 		lblContrasea.setBounds(81, 151, 78, 16);
 		contentPane.add(lblContrasea);
 		
-			passwd = new JTextField();
+			passwd = new JPasswordField();
 			passwd.setBounds(169, 148, 116, 22);
 			contentPane.add(passwd);
 			passwd.setColumns(10);
@@ -72,12 +76,11 @@ public class PrincipalVentana extends JFrame {
 		btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)  {
-			System.out.println(passwd.getText());
 			System.out.println(NumDNI.getText());
+			System.out.println(passwd.getText());
 			gestorBD gestor = new gestorBD();
 			try {
 				gestor.conectar();
-
 				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
@@ -87,13 +90,13 @@ public class PrincipalVentana extends JFrame {
 					gestor.getNumeroFilas(gestorBD.cliente);
 					String valiDni = gestor.getNumeroFilas(gestorBD.cliente);
 					System.out.println(valiDni);
-//					if (valiDni == NumDNI.getText()) {
-//						System.out.println("Es Correcto");
-//				
-//					}
-//					else {
-//						System.out.println("Es incorrecto");
-//					}
+					if (valiDni == NumDNI.getText()) {
+						System.out.println("Es Correcto");
+				
+					}
+					else {
+						System.out.println("Es incorrecto");
+					}
 
 				
 

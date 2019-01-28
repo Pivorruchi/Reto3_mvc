@@ -12,7 +12,7 @@ public class Vista{
 	public Lineas panelLinea = new Lineas();
 	public Paradas panelParada = new Paradas();	
 	
-	public Vista() {
+	public Vista()throws Exception {
 		mostrarPanel(panelLinea);
 		ventana.setVisible(true);
 	}
