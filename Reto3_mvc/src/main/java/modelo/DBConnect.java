@@ -14,8 +14,8 @@ import javax.swing.ListModel;
 
 public class DBConnect {
 	
-	public Connection connect;
-	public Statement statement;
+	public static Connection connect;
+	public static Statement statement;
 	public static ResultSet resultSet = null;
 	static DefaultListModel<String> listModel = new DefaultListModel<>();
 	
@@ -39,6 +39,7 @@ public class DBConnect {
 	    } 
 	
 	}
+	
 	
 	public void seleccionar(String sentencia) throws Exception {
 	    try {
@@ -68,9 +69,9 @@ public class DBConnect {
 	        // e.g. resultSet.getSTring(2);
 	        String Cod_bus = resultSet.getString("Cod_bus");
 	        String N_plazas = resultSet.getString("N_plazas");
-	//        Date date = resultSet.getDate("datum");
-	        System.out.println("Cod_bus: " + Cod_bus);
-	        System.out.println("N_plazas: " + N_plazas);
+	   //     Date date = resultSet.getDate("datum");
+	   //     System.out.println("Cod_bus: " + Cod_bus);
+	   //     System.out.println("N_plazas: " + N_plazas);
 	        
 	    }
 	}
