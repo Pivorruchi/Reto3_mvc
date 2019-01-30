@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -31,12 +32,13 @@ public class Lineas extends JPanel {
 		add(btnSeleccionarParada);
 		
 		
-		
+		JScrollPane scrollPane = new JScrollPane();
 		MyListModel lm = new MyListModel();		 
 		JList listaLineas = new JList(lm);
 		lm.llenarLinea();
-		listaLineas.setBounds(41, 42, 151, 155);   
+		listaLineas.setBounds(93, 36, 151, 155);   
 		listaLineas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.setViewportView(listaLineas);
 		add(listaLineas);
 		
 		

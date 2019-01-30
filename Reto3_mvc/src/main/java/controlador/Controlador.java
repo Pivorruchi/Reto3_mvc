@@ -22,7 +22,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent e) {
 				vista.mostrarPanel(vista.panelParada);
 				vista.ventana.setVisible(true);
-				hola
+				
 			}
 		});
 	}
