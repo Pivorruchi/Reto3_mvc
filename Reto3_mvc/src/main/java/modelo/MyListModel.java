@@ -6,19 +6,23 @@ import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
 public class MyListModel implements ListModel {
-	private DBConnect db = new DBConnect();
-	private String dbLinea = "select * from linea";
-	private String dbParada = "select * from parada";
-	private String codLinea = "Cod_Linea";
-	private String codParada = "Cod_Parada";
+	private Parada parada = new Parada();
+	private DB db = new DB();
+	private String sentenciadbLinea = "select * from linea";
+	private String sentenciadbParada = "Select P.Cod_Parada, P.Nombre, P.Calle, P.Latitud, P.Longitud \n" + 
+			"From Parada as P Inner Join `linea-parada` as LP ON  LP.Cod_Parada = P.Cod_Parada\n" + 
+			"Where LP.Cod_Linea = '%s'";
+	ArrayList<Linea> misLineas = new ArrayList<Linea>();
+	ArrayList<Parada> misParadas = new ArrayList<Parada>();
+	
 
 	private ArrayList<String> al = new ArrayList<String>();
 
 	public ArrayList<Linea> llenarLinea() throws Exception {
 
-		ArrayList<Linea> misLineas = new ArrayList<Linea>();
+		
 
-		misLineas = seleccionar(dbLinea, codLinea);
+		misLineas = db.seleccionarLineas(sentenciadbLinea);
 
 		for (int index = 0; index < misLineas.size(); index++) {
 			makeObj(misLineas.get(index).getNombre());
@@ -27,18 +31,20 @@ public class MyListModel implements ListModel {
 		return misLineas;
 	}
 
-	public ArrayList<Linea> llenarParada() throws Exception {
+	public ArrayList<Parada> llenarParada(String Linea) throws Exception {
 
-		ArrayList<Linea> misParadas = new ArrayList<Linea>();
+		
 
-		misParadas = seleccionar(dbParada, codParada);
-
+		sentenciadbParada = String.format(sentenciadbParada, Linea);
+		misParadas = db.seleccionarParadas(sentenciadbParada);
+		misParadas = parada.ordenarParadas(misParadas);
 		for (int index = 0; index < misParadas.size(); index++) {
 			makeObj(misParadas.get(index).getNombre());
 			al.add(misParadas.get(index).getNombre());
 		}
 		return misParadas;
 	}
+	
 
 	public Object makeObj(final String item) {
 		return new Object() {
@@ -61,6 +67,7 @@ public class MyListModel implements ListModel {
 	@Override
 	public void addListDataListener(ListDataListener l) {
 		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -70,26 +77,5 @@ public class MyListModel implements ListModel {
 
 	}
 
-	public ArrayList<Linea> seleccionar(String select, String Cod) throws Exception {
-		ArrayList<Linea> misLineas = new ArrayList<Linea>();
-
-		try {
-			db.conectar();
-			// Statements allow to issue SQL queries to the database
-			db.statement = db.connect.createStatement();
-			// Result set get the result of the SQL query
-			DBConnect.resultSet = db.statement.executeQuery(select);
-			while (DBConnect.resultSet.next()) {
-				misLineas.add(
-						new Linea(DBConnect.resultSet.getString(Cod), DBConnect.resultSet.getString("Nombre")));
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		db.close();
-		return misLineas;
-
-	}
+	
 }

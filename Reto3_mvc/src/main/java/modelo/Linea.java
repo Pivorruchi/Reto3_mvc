@@ -6,9 +6,7 @@ import javax.swing.DefaultListModel;
 
 public class Linea {
 	private String cod_linea;
-	private String nombre;
-	static DefaultListModel<String> listModel = new DefaultListModel<>();
-	
+	private String nombre;	
 	
 	
 	public Linea() {

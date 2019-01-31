@@ -7,7 +7,7 @@ import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListDataListener;
 
-import modelo.DBConnect;
+import modelo.DB;
 import modelo.Linea;
 import modelo.MyListModel;
 

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import Login.gestorBD;
-import modelo.DBConnect;
+import modelo.DB;
 
 public class Distancia {
-	DBConnect db = new DBConnect();
+	DB db = new DB();
 	static int[] codParada= {1};
 	public static String Latitud="Latitud";
 	public static String Longitud="Longitud";
@@ -34,19 +34,20 @@ public class Distancia {
 		//String latitudSelect = "select Latitud from parada where Cod_Parada=1" ;
 
 		
-		DBConnect.conectar();
-		termiLat = (DBConnect.seleccionara(latitudSelect, Latitud));
-		termiLong = (DBConnect.seleccionara(longitudSelect, Longitud));
+		DB.conectar();
+		termiLat = (DB.seleccionara(latitudSelect, Latitud));
+		termiLong = (DB.seleccionara(longitudSelect, Longitud));
 		System.out.println(termiLat+ termiLong);
 		termiLanNum= Double.parseDouble(termiLat);
 		termiLongNum= Double.parseDouble(termiLong);
-		numParada=(DBConnect.seleccionarInt(counnt,numParada));
+		numParada=(DB.seleccionarInt(counnt,numParada));
 		
 		for (int i=0;i<=numParada;i++) {
 			int a=1;
-			codParada[i]=DBConnect.seleccionarArray(codParadaSelect+a,a);
+			codParada[i]=DB.seleccionarArray(codParadaSelect+i+1,a);
 			System.out.println(codParada[i]);
 			a++;
+			
 		}
 		
 		

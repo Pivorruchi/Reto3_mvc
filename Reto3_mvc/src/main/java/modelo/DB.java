@@ -12,7 +12,7 @@ import javax.swing.ListModel;
 
 //import modelo.Linea;
 
-public class DBConnect {
+public class DB {
 	
 	public static Connection connect;
 	public static Statement statement;
@@ -20,15 +20,16 @@ public class DBConnect {
 	static DefaultListModel<String> listModel = new DefaultListModel<>();
 	
 	
-	public DBConnect() {
+	public DB() {
 		connect=null;
+		conectar();
 	}
-	public static void conectar() throws Exception {
+	public static void conectar() {
 	    try {
-	        // This will load the MySQL driver, each DB has its own driver
+	      
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        
-	        // Setup the connection with the DB
+	        
 	        connect = DriverManager
 	                .getConnection("jdbc:mysql://localhost:3306/reto3_V2?serverTimezone=UTC","root","elorrieta");
 	         
@@ -40,11 +41,59 @@ public class DBConnect {
 	
 	}
 	
-	public void seleccionar(String sentencia) throws Exception {
+	public ArrayList<Linea> seleccionarLineas(String select) throws Exception {
+		ArrayList<Linea> misLineas = new ArrayList<Linea>();
+
+		try {
+			
+			DB.resultSet = seleccionar(select);
+			while (DB.resultSet.next()) {
+				misLineas.add(
+						new Linea(DB.resultSet.getString("Cod_Linea"), DB.resultSet.getString("Nombre")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return misLineas;
+	}
+	
+	public ArrayList<Parada> seleccionarParadas(String select) throws Exception {
+		ArrayList<Parada> misParadas = new ArrayList<Parada>();
+
+		try {
+			
+			DB.resultSet = seleccionar(select);
+			while (DB.resultSet.next()) {
+				misParadas.add(
+						new Parada(DB.resultSet.getInt("Cod_Parada"), DB.resultSet.getString("Nombre"), DB.resultSet.getString("Calle"), resultSet.getFloat("Latitud"), resultSet.getFloat("Longitud") ));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return misParadas;
+	}
+	
+	public ResultSet seleccionar(String select) {
+		ResultSet rs = null;
+		try {
+			// Statements allow to issue SQL queries to the database
+			statement = connect.createStatement();
+			// Result set get the result of the SQL query
+			rs = statement.executeQuery(select);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+	/*public void seleccionar(String sentencia) throws Exception {
 	    try {
-	        // Statements allow to issue SQL queries to the database
+	       
 	        statement = connect.createStatement();
-	        // Result set get the result of the SQL query
+	        
 	        resultSet = statement
 	                .executeQuery(sentencia);
 	        writeResultSet(resultSet);
@@ -55,13 +104,13 @@ public class DBConnect {
 	    
 	    
 
-	}
+	}*/
 	
 	public static String seleccionara(String sentencia, String str) throws Exception {
 		try {
-			// Statements allow to issue SQL queries to the database
+			
 			statement = connect.createStatement();
-			// Result set get the result of the SQL query
+			
 			resultSet = statement.executeQuery(sentencia);
 			return writeResultSeta(resultSet, str);
 
@@ -75,15 +124,11 @@ public class DBConnect {
 	
 	
 	private void writeResultSet(ResultSet resultSet) throws SQLException {
-	    // ResultSet is initially before the first data set
+	    
 	    while (resultSet.next()) {
-	        // It is possible to get the columns via name
-	        // also possible to get the columns via the column number
-	        // which starts at 1
-	        // e.g. resultSet.getSTring(2);
-	        String Cod_bus = resultSet.getString("Cod_bus");
+	        	        String Cod_bus = resultSet.getString("Cod_bus");
 	        String N_plazas = resultSet.getString("N_plazas");
-	//        Date date = resultSet.getDate("datum");
+	
 	        System.out.println("Cod_bus: " + Cod_bus);
 	        System.out.println("N_plazas: " + N_plazas);
 	        
@@ -94,18 +139,12 @@ public class DBConnect {
 	
 
 	public static String writeResultSeta(ResultSet resultSet, String str) throws SQLException {
-		// ResultSet is initially before the first data set
+		
 		while (resultSet.next()) {
-			// It is possible to get the columns via name
-			// also possible to get the columns via the column number
-			// which starts at 1
-			// e.g. resultSet.getSTring(2);
-			// String Cod_bus = resultSet.getString("Cod_bus");
-			// String N_plazas = resultSet.getString("N_plazas");
+			
+			
 			str = resultSet.getString(str);
-			// Date date = resultSet.getDate("datum");
-			// System.out.println("Cod_bus: " + Cod_bus);
-			// System.out.println("N_plazas: " + N_plazas);
+			
 			System.out.println(str);
 
 		}
@@ -115,9 +154,9 @@ public class DBConnect {
 	
 	public static int seleccionarInt(String sentencia, int i) throws Exception {
 		try {
-			// Statements allow to issue SQL queries to the database
+			
 			statement = connect.createStatement();
-			// Result set get the result of the SQL query
+		
 			resultSet = statement.executeQuery(sentencia);
 			return writeResultSetInt(resultSet, i);
 
@@ -129,18 +168,10 @@ public class DBConnect {
 	}
 	
 	public static int writeResultSetInt(ResultSet resultSet, int i) throws SQLException {
-		// ResultSet is initially before the first data set
+
 		while (resultSet.next()) {
-			// It is possible to get the columns via name
-			// also possible to get the columns via the column number
-			// which starts at 1
-			// e.g. resultSet.getSTring(2);
-			// String Cod_bus = resultSet.getString("Cod_bus");
-			// String N_plazas = resultSet.getString("N_plazas");
+		
 			i = resultSet.getInt(i);
-			// Date date = resultSet.getDate("datum");
-			// System.out.println("Cod_bus: " + Cod_bus);
-			// System.out.println("N_plazas: " + N_plazas);
 			System.out.println(i);
 
 		}
@@ -150,9 +181,8 @@ public class DBConnect {
 	
 	public static int seleccionarArray(String sentencia, int i) throws Exception {
 		try {
-			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
-			// Result set get the result of the SQL query
+		
 			resultSet = statement.executeQuery(sentencia);
 			return writeResultSetArray(resultSet, i);
 
@@ -164,19 +194,12 @@ public class DBConnect {
 	}
 	
 	public static int writeResultSetArray(ResultSet resultSet, int i) throws SQLException {
-		// ResultSet is initially before the first data set
+
 		int array=0;
 		while (resultSet.next()) {
-			// It is possible to get the columns via name
-			// also possible to get the columns via the column number
-			// which starts at 1
-			// e.g. resultSet.getSTring(2);
-			// String Cod_bus = resultSet.getString("Cod_bus");
-			// String N_plazas = resultSet.getString("N_plazas");
+		
 			array = resultSet.getInt(i);
-			// Date date = resultSet.getDate("datum");
-			// System.out.println("Cod_bus: " + Cod_bus);
-			// System.out.println("N_plazas: " + N_plazas);
+	
 			System.out.println(array);
 
 		}
