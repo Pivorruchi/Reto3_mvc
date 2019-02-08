@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
+import javax.swing.event.ListSelectionListener;
 
 public class MyListModel implements ListModel {
 	private Parada parada = new Parada();
 	private DB db = new DB();
 	private String sentenciadbLinea = "select * from linea";
-	private String sentenciadbParada = "Select P.Cod_Parada, P.Nombre, P.Calle, P.Latitud, P.Longitud \n" + 
-			"From Parada as P Inner Join `linea-parada` as LP ON  LP.Cod_Parada = P.Cod_Parada\n" + 
-			"Where LP.Cod_Linea = '%s'";
-	ArrayList<Linea> misLineas = new ArrayList<Linea>();
-	ArrayList<Parada> misParadas = new ArrayList<Parada>();
+	//private String sentenciadbParada = "select * from linea";
+	private String sentenciadbParada = "Select P.Cod_Parada, P.Nombre, P.Calle, P.Latitud, P.Longitud, P.Distancia From Parada as P Inner Join `linea-parada` as LP ON  LP.Cod_Parada = P.Cod_Parada Where LP.Cod_Linea ='%s'";
+	public ArrayList<Linea> misLineas = new ArrayList<Linea>();
+	public ArrayList<Parada> misParadas = new ArrayList<Parada>();
 	
 
 	private ArrayList<String> al = new ArrayList<String>();
@@ -32,12 +32,14 @@ public class MyListModel implements ListModel {
 	}
 
 	public ArrayList<Parada> llenarParada(String Linea) throws Exception {
+		//public ArrayList<Parada> llenarParada() throws Exception {
 
 		
 
+		//sentenciadbParada = String.format(sentenciadbParada);
 		sentenciadbParada = String.format(sentenciadbParada, Linea);
 		misParadas = db.seleccionarParadas(sentenciadbParada);
-		misParadas = parada.ordenarParadas(misParadas);
+		//misParadas = parada.ordenarParadas(misParadas);
 		for (int index = 0; index < misParadas.size(); index++) {
 			makeObj(misParadas.get(index).getNombre());
 			al.add(misParadas.get(index).getNombre());
@@ -76,6 +78,12 @@ public class MyListModel implements ListModel {
 		// TODO Auto-generated method stub
 
 	}
+
+	public char[] get(int x) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 }
